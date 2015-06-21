@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PrepareNoticeRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -38,6 +39,11 @@ class NoticesController extends Controller
 
         // load a view to create a new notice
         return view('notices.create');
+    }
+
+    public function confirm(PrepareNoticeRequest $request)
+    {
+
     }
 
     /**
