@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PrepareNoticeRequest;
 use App\Provider;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -43,11 +44,37 @@ class NoticesController extends Controller
         return view('notices.create', compact('providers'));
     }
 
-    public function confirm(PrepareNoticeRequest $request)
+    /**
+     * Ask the user to confirm the DMCA that will be delivered.
+     *
+     * @param PrepareNoticeRequest $request
+     * @param Guard $auth
+     * @return \Response
+     */
+    public function confirm(PrepareNoticeRequest $request, Guard $auth)
     {
-        return $request->all();
+        $template = $this->compleDmcaTemplate($request->all(), $auth);
+
+        return view('notices.confirm', compact('template'));
     }
 
+    /**
+     * compile the DMCA template from the form data.
+     *
+     * @param $data
+     * @param Guard $auth
+     * @return mixed
+     */
+    public function compleDmcaTemplate($data, Guard $auth)
+    {
+        $data = $data + [
+                'name' => $auth->user()->name,
+                'email' => $auth->user()->email,
+            ];
+
+        return view()->file(app_path('Http/Templates/dmca.blade.php'), $data);
+
+    }
     /**
      * Store a newly created resource in storage.
      *
