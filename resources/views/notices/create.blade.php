@@ -6,7 +6,7 @@
     {!! Form::open(['method' => 'GET', 'action' => 'NoticesController@confirm']) !!}
         <div class="form-group">
             {!! Form::label('provider_id', 'Who we are sending this to ?') !!}
-            {!! Form::select('provider_id', [], null, ['class' => 'form-control']) !!}
+            {!! Form::select('provider_id', $providers, null, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('infringing_link', 'What id the link to where this content is located.') !!}
+            {!! Form::label('infringing_link', 'What is the link to where this content is located.') !!}
             {!! Form::text('infringing_link', null,  ['class' => 'form-control']) !!}
         </div>
 
@@ -26,7 +26,7 @@
 
         <div class="form-group">
             {!! Form::label('original_description', 'And, finally, it might help to provide some extra information related to this DMCA notice.') !!}
-            {!! Form::text('original_description', null,  ['class' => 'form-control']) !!}
+            {!! Form::textarea('original_description', null,  ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">
