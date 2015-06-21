@@ -4,7 +4,7 @@
 
     <h1 class="page-heading">Confirm</h1>
 
-    {!! Form::open() !!}
+    {!! Form::open(['action' => 'NoticesController@store']) !!}
 
         <div class="form-group">
             {!! Form::textarea('template',$template, ['class' => 'form-control']) !!}

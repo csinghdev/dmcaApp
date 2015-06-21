@@ -53,7 +53,9 @@ class NoticesController extends Controller
      */
     public function confirm(PrepareNoticeRequest $request, Guard $auth)
     {
-        $template = $this->compleDmcaTemplate($request->all(), $auth);
+        $template = $this->compileDmcaTemplate($data = $request->all(), $auth);
+
+        session()->flash('dmca', $data);
 
         return view('notices.confirm', compact('template'));
     }
@@ -65,7 +67,7 @@ class NoticesController extends Controller
      * @param Guard $auth
      * @return mixed
      */
-    public function compleDmcaTemplate($data, Guard $auth)
+    public function compileDmcaTemplate($data, Guard $auth)
     {
         $data = $data + [
                 'name' => $auth->user()->name,
@@ -82,7 +84,9 @@ class NoticesController extends Controller
      */
     public function store()
     {
-        //
+        $data = session()->get('dmca');
+
+        return $data;
     }
 
     /**
