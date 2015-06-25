@@ -31,4 +31,8 @@
         </tbody>
     </table>
 
+    @unless(count($notices))
+        <p class="text-center">You haven't sent any DMCA notices yet!</p>
+    @endunless
+
 @endsection

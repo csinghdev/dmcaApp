@@ -95,7 +95,7 @@ class NoticesController extends Controller
         // Form data flashed, get with session()->get('dmca')
         $notice = $this->createNotice($request);
 
-        Mail::queue('emails.dmca',compact('notice'), function($message) use ($notice){
+        Mail::queue(['text' =>'emails.dmca'], compact('notice'), function($message) use ($notice){
             $message->from($notice->getOwnerEmail())
                     ->to($notice->getRecipientEmail())
                     ->subject('DMCA Notice');
