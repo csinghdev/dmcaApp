@@ -101,6 +101,7 @@ class NoticesController extends Controller
                     ->subject('DMCA Notice');
         });
 
+        flash('Your DMCA notice has been delivered !');
         return redirect('notices');
     }
 
@@ -132,9 +133,12 @@ class NoticesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($noticeId, Request $request)
     {
-        //
+        $isRemoved = $request->has('content_removed');
+
+        Notice::findOrFail($noticeId)
+            ->update(['content_removed' => $isRemoved]);
     }
 
     /**
