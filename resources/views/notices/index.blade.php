@@ -22,8 +22,7 @@
                     <td>
                         {!! Form::open(['data-remote', 'method' => 'PATCH', 'url' => 'notices/'. $notice->id]) !!}
                         <div class="form-group">
-                            {!! Form::checkbox('content_removed', $notice->content_removed, $notice->content_removed) !!}
-                            {!! Form::submit('Submit') !!}
+                            {!! Form::checkbox('content_removed', $notice->content_removed, $notice->content_removed, ['data-click-submits-form']) !!}
                         </div>
                         {!! Form::close() !!}
                     </td>

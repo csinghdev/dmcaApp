@@ -20,4 +20,9 @@
     // Forms marked with the "data-remote" attributes will submit, via AJAX.
     $('form[data-remote]').on('submit', submitAjaxRequest);
 
+    // The "data-click-submits-form" attribute immediately submits the form on change.
+    $('*[data-click-submits-form]').on('change', function() {
+        $(this).closest('form').submit();
+    });
+
 })();
