@@ -12,7 +12,9 @@
 <body>
     @include('partials.nav')
 
-    @include('flash::message')
+    <div class="container">
+        @include('flash::message')
+    </div>
 
     <div class="container">
         @yield('content')
